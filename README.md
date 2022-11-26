@@ -1,5 +1,5 @@
 # ECO-3D: Equivariant Contrastive Learning for Pre-training on Perturbed 3D Point Cloud
-![image](https://github.com/robinwang1/ECO-3D/blob/main/assets/fig1.png)
+![image](https://github.com/robinwang1/ECO-3D/blob/main/figs/eco.png)
 
 ## Introduction
 PyTorch implementation for the paper [ECO-3D: Equivariant Contrastive Learning for Pre-training on Perturbed 3D Point Cloud (AAAI 2023)](http://arxiv.org/abs/2203.03888).
