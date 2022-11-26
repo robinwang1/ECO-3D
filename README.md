@@ -13,16 +13,16 @@ Repository still under construction/refactoring.
 
 #### Download RobustPointSet and ScanObjectNN
 We use two datasets:
-* [ModelNet-C](https://github.com/AutodeskAILab/RobustPointSet)
+* [RobustPointSet](https://github.com/AutodeskAILab/RobustPointSet)
 * [ScanObjectNN](https://hkust-vgd.github.io/scanobjectnn/)
-Place the dataset in the dataset
+Place the data in the corresponding folder.
 
 #### Training VAE
-To train VAE to obtain the perturbation tokens on ModelNet-C run:
+To train VAE to obtain the perturbation tokens on RobustPointSet run:
 ```
 $ python main_dvae_hierarchical_distinct_recon.py --config cfgs/RobustPointSet/dvaehdrm.yaml --exp_name pretrain_dvae_hierarchical_distinct_recon
 ```
-You can set the perturbation type in the correspounding config files.
+You can set the perturbation type in the config files.
 
 To train VAE to obtain the perturbation tokens on ScanObjectNN run:
 ```
@@ -32,7 +32,7 @@ $ python main_dvae_hierarchical_distinct_recon.py --config cfgs/ScanObjectNN_mod
 After training, you should move the pre-trained VAE models into corresponding folders at "./pretrained_models/" to obtain.
 
 
-We use the folloing implemetations to respectively verify ECO-3D on ModelNet40 and ShapeNet16.
+We use the folloing implemetations to respectively verify ECO-3D on RobustPointSet and ScanObjectNN.
 * [DGCNN](https://github.com/WangYueFt/dgcnn/tree/master/pytorch)
 * [PointNet/PointNet++](https://github.com/yanx27/Pointnet_Pointnet2_pytorch)
 
@@ -40,13 +40,13 @@ We use the folloing implemetations to respectively verify ECO-3D on ModelNet40 a
 
 ## Train and Evaluate
 
-#### ModelNet40
-To pre-train and fine-tune on ModelNet-C with noise perturbations using PointNet backends run: 
+#### RobustPointSet
+To pre-train and fine-tune on RobustPointSet with noise perturbations using PointNet backends run: 
 ```
 $ python train_eco3d_cls.py  --log_dir test_equ_dvaeh --use_equ pretrained/dvaeh/ckpt-epoch-018.pth --transform rotation
 ```
 
-To pre-train and fine-tune on ModelNet-C with noise perturbations using DGCNN backends run:  
+To pre-train and fine-tune on RobustPointSet with noise perturbations using DGCNN backends run:  
 ```
 $ python train_eco3d_cls.py  --log_dir test_equ_dvaehdrm --use_equ pretrained/dvaehdrm/ckpt-epoch-017.pth --transform noise
 ```
