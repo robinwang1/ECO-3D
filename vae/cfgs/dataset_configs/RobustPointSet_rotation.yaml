@@ -1,0 +1,4 @@
+NAME: RobustPointSet
+DATA_PATH: data/RobustPointSet
+N_POINTS: 1024
+TRANS: rotation
