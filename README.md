@@ -15,30 +15,29 @@ Repository still under construction/refactoring.
 We use two datasets:
 * [RobustPointSet](https://github.com/AutodeskAILab/RobustPointSet)
 * [ScanObjectNN](https://hkust-vgd.github.io/scanobjectnn/)
-Place the data in the corresponding folder.
 
-#### Training VAE
+Place the data in corresponding folder.
+
+## VAE Training
 To train VAE to obtain the perturbation tokens on RobustPointSet run:
 ```
 $ python main_dvae_hierarchical_distinct_recon.py --config cfgs/RobustPointSet/dvaehdrm.yaml --exp_name pretrain_dvae_hierarchical_distinct_recon
 ```
-You can set the perturbation type in the config files.
+You can set the perturbation type in config files.
 
 To train VAE to obtain the perturbation tokens on ScanObjectNN run:
 ```
 $ python main_dvae_hierarchical_distinct_recon.py --config cfgs/ScanObjectNN_models/dvaehdrm_hard.yaml --exp_name pretrain_dvae_scanobjnn_hard
 ```
 
-After training, you should move the pre-trained VAE models into corresponding folders at "./pretrained_models/" to obtain.
+After training, you should move the pre-trained VAE models into folders at "./pretrained_models/".
 
 
+## ECO3D Pre-Train and Fine-Tune
 We use the folloing implemetations to respectively verify ECO-3D on RobustPointSet and ScanObjectNN.
 * [DGCNN](https://github.com/WangYueFt/dgcnn/tree/master/pytorch)
 * [PointNet/PointNet++](https://github.com/yanx27/Pointnet_Pointnet2_pytorch)
 
-
-
-## Train and Evaluate
 
 #### RobustPointSet
 To pre-train and fine-tune on RobustPointSet with noise perturbations using PointNet backends run: 
