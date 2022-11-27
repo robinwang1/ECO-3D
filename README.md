@@ -11,8 +11,12 @@ Repository still under construction/refactoring.
     $ cd ECO-3D/
     $ conda env create -f environment.yaml
 
-#### Download RobustPointSet and ScanObjectNN
-We use two datasets:
+#### Compile CUDA Files
+In the VAE model, the CUDA version of Chamfer and EM Distance are used. To compile these files, please refer to the instructions at:
+*[PointBERT](https://github.com/lulutang0608/Point-BERT)
+
+#### Download Datasets
+Two perturbation datasets are selected:
 * [RobustPointSet](https://github.com/AutodeskAILab/RobustPointSet)
 * [ScanObjectNN](https://hkust-vgd.github.io/scanobjectnn/)
 
@@ -30,10 +34,10 @@ To train VAE to obtain the perturbation tokens on ScanObjectNN run:
 $ python main_dvae_hierarchical_distinct_recon.py --config cfgs/ScanObjectNN_models/dvaehdrm_hard.yaml --exp_name pretrain_dvae_scanobjnn_hard
 ```
 
-After training, you should move the pre-trained VAE models into folders at "./pretrained_models/".
+After training, you should move the pre-trained VAE models into folders at "eco3d/pretrained".
 
 
-## ECO3D Pre-Train and Fine-Tune
+## ECO-3D Pre-Training and Fine-Tuning
 We use the folloing implemetations to respectively verify ECO-3D on RobustPointSet and ScanObjectNN.
 * [DGCNN](https://github.com/WangYueFt/dgcnn/tree/master/pytorch)
 * [PointNet/PointNet++](https://github.com/yanx27/Pointnet_Pointnet2_pytorch)
