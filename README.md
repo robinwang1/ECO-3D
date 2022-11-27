@@ -20,7 +20,7 @@ Two perturbation datasets are selected:
 * [RobustPointSet](https://github.com/AutodeskAILab/RobustPointSet)
 * [ScanObjectNN](https://hkust-vgd.github.io/scanobjectnn/)
 
-Download the data in corresponding folders.
+Download the data and place them in corresponding folders.
 
 ## VAE Training
 To train VAE to obtain the perturbation tokens on RobustPointSet run:
