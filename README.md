@@ -12,8 +12,8 @@ Repository still under construction/refactoring.
     $ conda env create -f environment.yaml
 
 #### Compile CUDA Files
-In the VAE model, the CUDA version of Chamfer and EM Distance are used. To compile these files, please refer to the instructions at:
-*[PointBERT](https://github.com/lulutang0608/Point-BERT)
+In VAE model, the CUDA version of Chamfer and EM Distance are used. To compile these files, please refer to the instructions at:
+* [PointBERT](https://github.com/lulutang0608/Point-BERT)
 
 #### Download Datasets
 Two perturbation datasets are selected:
@@ -46,23 +46,23 @@ We use the folloing implemetations to respectively verify ECO-3D on RobustPointS
 #### RobustPointSet
 To pre-train and fine-tune on RobustPointSet with noise perturbations using PointNet backends run: 
 ```
-$ python train_eco3d_cls.py  --log_dir test_equ_dvaeh --use_equ pretrained/dvaehdrm/vae_ckpt.pth --transform rotation
+$ python train_eco3d_cls.py --use_equ pretrained/vae_ckpt.pth --use_con --model pointnet_eco_cls --transform noise
 ```
 
 To pre-train and fine-tune on RobustPointSet with noise perturbations using DGCNN backends run:  
 ```
-$ python train_eco3d_cls.py  --log_dir test_equ_dvaehdrm --use_equ pretrained/dvaehdrm/vae_ckpt.pth --transform noise
+$ python train_eco3d_cls.py --use_equ pretrained/vae_ckpt.pth --use_con --model dgcnn_eco_cls --transform noise
 ```
 
 #### ScanObjectNN
 To pre-train and fine-tune on ScanObjectNN with hardest perturbations using PointNet backends run: 
 ```
-$ python train_eco3d_cls.py  --log_dir test_equ_dvaehdrm --use_equ pretrained/dvaehdrm/vae_ckpt.pth --dataset ScanObjectNN --transform hard
+$ python train_eco3d_cls.py --use_equ pretrained/vae_ckpt.pth --use_con --model pointnet_eco_cls --dataset ScanObjectNN --transform hard
 ```
 
 To pre-train and fine-tune on ScanObjectNN with hardest perturbations using DGCNN backends run:  
 ```
-$ python train_eco3d_cls.py  --log_dir test_equ_dvaehdrm --use_equ pretrained/dvaehdrm/vae_ckpt.pth --dataset ScanObjectNN --transform hard
+$ python train_eco3d_cls.py --use_equ pretrained/vae_ckpt.pth --use_con --model dgcnn_eco_cls --dataset ScanObjectNN --transform hard
 ```
 
 ## Contact 
