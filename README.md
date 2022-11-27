@@ -42,12 +42,12 @@ We use the folloing implemetations to respectively verify ECO-3D on RobustPointS
 #### RobustPointSet
 To pre-train and fine-tune on RobustPointSet with noise perturbations using PointNet backends run: 
 ```
-$ python train_eco3d_cls.py  --log_dir test_equ_dvaeh --use_equ pretrained/dvaeh/ckpt-epoch-018.pth --transform rotation
+$ python train_eco3d_cls.py  --log_dir test_equ_dvaeh --use_equ pretrained/dvaehdrm/vae_ckpt.pth --transform rotation
 ```
 
 To pre-train and fine-tune on RobustPointSet with noise perturbations using DGCNN backends run:  
 ```
-$ python train_eco3d_cls.py  --log_dir test_equ_dvaehdrm --use_equ pretrained/dvaehdrm/ckpt-epoch-017.pth --transform noise
+$ python train_eco3d_cls.py  --log_dir test_equ_dvaehdrm --use_equ pretrained/dvaehdrm/vae_ckpt.pth --transform noise
 ```
 
 #### ScanObjectNN
