@@ -46,23 +46,23 @@ We use the folloing implemetations to respectively verify ECO-3D on RobustPointS
 #### RobustPointSet
 To pre-train and fine-tune on RobustPointSet with noise perturbations using PointNet backends run: 
 ```
-$ python train_eco3d_cls.py --use_equ pretrained/vae_ckpt.pth --use_con --model pointnet_eco_cls --transform noise
+$ python train_eco3d_cls.py --model pointnet_eco_cls --dataset RobustPointSet --trans noise --use_con --use_equ
 ```
 
 To pre-train and fine-tune on RobustPointSet with noise perturbations using DGCNN backends run:  
 ```
-$ python train_eco3d_cls.py --use_equ pretrained/vae_ckpt.pth --use_con --model dgcnn_eco_cls --transform noise
+$ python train_eco3d_cls.py --model dgcnn_eco_cls --dataset RobustPointSet --trans noise --use_con --use_equ
 ```
 
 #### ScanObjectNN
 To pre-train and fine-tune on ScanObjectNN with hardest perturbations using PointNet backends run: 
 ```
-$ python train_eco3d_cls.py --use_equ pretrained/vae_ckpt.pth --use_con --model pointnet_eco_cls --dataset ScanObjectNN --transform hard
+$ python train_eco3d_cls.py --model pointnet_eco_cls --dataset ScanObjectNN --trans hard --use_con --use_equ
 ```
 
 To pre-train and fine-tune on ScanObjectNN with hardest perturbations using DGCNN backends run:  
 ```
-$ python train_eco3d_cls.py --use_equ pretrained/vae_ckpt.pth --use_con --model dgcnn_eco_cls --dataset ScanObjectNN --transform hard
+$ python train_eco3d_cls.py --model dgcnn_eco_cls --dataset ScanObjectNN --trans hard --use_con --use_equ
 ```
 
 ## Contact 
