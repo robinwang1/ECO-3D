@@ -29,7 +29,7 @@ from tqdm import tqdm
 class balance_weight(torch.nn.Module):
     def __init__(self):
         super(balance_weight, self).__init__()
-        self.weight = torch.nn.parameter(torch.tensor(0.5)).cuda()
+        self.weight = torch.nn.parameter(torch.tensor(0.5))
     def forward(self, loss_con, loss_equ):
         total_loss = self.weight * loss_con +  (1-self.weight) * loss_equ
         return total_loss
@@ -70,22 +70,6 @@ def inplace_relu(m):
     if classname.find('ReLU') != -1:
         m.inplace = True
 
-
-
-# def cal_loss(pred, gold, eps=0):
-#     ''' Calculate cross entropy loss, apply label smoothing if needed. '''
-#
-#     gold = gold.contiguous().view(-1)
-#     gold = gold.to(torch.int64)
-#     n_class = pred.size(1)
-#     one_hot = torch.zeros_like(pred).scatter(1, gold.view(-1, 1), 1)
-#     one_hot = one_hot * (1 - eps) + (1 - one_hot) * eps / (n_class - 1)
-#     #
-#     # similarity = F.cosine_similarity(pred, one_hot)
-#     # loss = 1 - torch.mean(similarity)
-#     loss = -(one_hot * pred).sum(dim=1).mean()
-#
-#     return loss
 
 def cal_loss(pred, eps=0):
     ''' Calculate cross entropy loss, apply label smoothing if needed. '''
@@ -204,7 +188,7 @@ def main(args):
     for param in vae.parameters():
         param.requires_grad = False
     shutil.copy('autoencoder/dvae.py', str(exp_dir))
-    bw = balance_weight()
+    bw = balance_weight().cuda().train()
     for param in bw.parameters():
         param.requires_grad = True
 
