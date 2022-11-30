@@ -26,6 +26,13 @@ from provider import ECOLoss
 from pathlib import Path
 from tqdm import tqdm
 
+class balance_weight(torch.nn.Module):
+    def __init__(self):
+        super(balance_weight, self).__init__()
+        self.weight = torch.nn.parameter(torch.tensor(0.5)).cuda()
+    def forward(self, loss_con, loss_equ):
+        total_loss = self.weight * loss_con +  (1-self.weight) * loss_equ
+        return total_loss
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = BASE_DIR
@@ -197,6 +204,9 @@ def main(args):
     for param in vae.parameters():
         param.requires_grad = False
     shutil.copy('autoencoder/dvae.py', str(exp_dir))
+    bw = balance_weight()
+    for param in bw.parameters():
+        param.requires_grad = True
 
     if not args.use_cpu:
         print("Let's use", torch.cuda.device_count(), "GPUs!")
@@ -320,12 +330,16 @@ def main(args):
                     loss_cls = criterion(pred_cls, target.long())
                 else:
                     loss_cls = torch.tensor(0.0).cuda()
+                if args.use_equ and args.use_con:
+                    loss = bw(loss_con, loss_equ)
+                else:
+                    loss = loss_cls + loss_con + loss_equ
             else:
                 loss_equ = torch.tensor(0.0).cuda()
                 loss_con = torch.tensor(0.0).cuda()
                 pred_cls = classifier(feature_b, neighborhood_t, center_t, logits_t, fine_tune=True)
                 loss_cls = criterion(pred_cls, target.long())
-            loss = loss_cls + loss_con + loss_equ
+                loss = loss_cls + loss_con + loss_equ
 
             pred_choice = pred_cls.data.max(1)[1]
             correct = pred_choice.eq(target.long().data).cpu().sum()
